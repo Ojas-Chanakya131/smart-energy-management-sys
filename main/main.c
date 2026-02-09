@@ -98,9 +98,9 @@ void power_sample()
     ESP_LOGI(TAG, "sectorA = %f", powerstruct.sectorA);
 }
 void dec_algo(){
-        powerstruct.limit = 10.0;
+    powerstruct.limit = 12.0;
     ESP_LOGI(TAG, "ADDITION: %f", powerstruct.sectorA+powerstruct.sectorB);
-    if(powerstruct.sectorA+powerstruct.sectorB < powerstruct.limit){
+    if(powerstruct.sectorA+powerstruct.sectorB < powerstruct.renewable){
             relay_handle(0, 1);
         relay_handle(1, 1);
         
