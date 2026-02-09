@@ -123,24 +123,24 @@ void dec_algo(){
     }
 }
 
-// void display_send(){
-//     unsigned char  data_power_renewable[8]={0x5A, 0xA5, 0x05, 0x82, 0x52, 0x00, 0x01, 0x12};
-//     int a = powerstruct.grid;
-//     uint8_t high_byte = (a>> 8) & 0xFF;
-//     uint8_t low_byte  = a & 0xFF;
-//     data_power_renewable[6] = high_byte;
-//     data_power_renewable[7] = low_byte;
-//    // ESP_LOGE(TAG, "%i", uart_write_bytes(UART_NUM_2, data_power_renewable, 8));
+void display_send(){
+    unsigned char  data_power_renewable[8]={0x5A, 0xA5, 0x05, 0x82, 0x52, 0x00, 0x01, 0x12};
+    int a = powerstruct.grid;
+    uint8_t high_byte = (a>> 8) & 0xFF;
+    uint8_t low_byte  = a & 0xFF;
+    data_power_renewable[6] = high_byte;
+    data_power_renewable[7] = low_byte;
+   // ESP_LOGE(TAG, "%i", uart_write_bytes(UART_NUM_2, data_power_renewable, 8));
 
 
-// }
+}
 void main_task(void *arg){
     while(1){
         power_sample();
             dec_algo();
         xQueueOverwrite(pzem_queue, &powerstruct);
         // relay_handle(1,1)
-        //display_send();
+        display_send();
         vTaskDelay(pdMS_TO_TICKS(1000));
     }
 
